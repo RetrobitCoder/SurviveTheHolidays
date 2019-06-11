@@ -6,9 +6,15 @@ enum class GameState : unsigned char
   Title, Play, Pause, GameOver
 };
 
+enum class PlayState : unsigned char
+{
+  NewYears
+};
+
 Arduboy2 ab;
 Sprites sprite;
 GameState gameState = GameState::Title;
+PlayState playState = PlayState::NewYears;
 
 void setup() {
   ab.begin();
@@ -29,6 +35,11 @@ void mainTitle()
   }
 }
 
+void gameLoop()
+{
+  //need to add new years game level
+}
+
 void loop() {
   if(!ab.nextFrame()) return;
   ab.clear();
@@ -39,6 +50,7 @@ void loop() {
       mainTitle();
       break;
     case GameState::Play:
+      gameLoop();
       break;
     case GameState::Pause:
       break;
